@@ -1,4 +1,4 @@
-import ICard from "./cards/card";
+import { ICard } from "./card";
 
 export default interface IPlayer {
   handSize: number,
