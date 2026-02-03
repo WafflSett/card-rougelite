@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IUnit } from '../../../models/arena/card';
 
 @Component({
   selector: 'app-unit',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './unit.css',
 })
 export class Unit {
-
+  @Input() unit! : IUnit;
 }

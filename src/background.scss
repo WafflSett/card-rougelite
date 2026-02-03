@@ -101,21 +101,20 @@ $time-4: 200s;
 
 //changes the movement of particles
 @keyframes animParticle {
-  from {
-    // transform: translateY(0px);
+  0% {
     transform: translateX(0px);
+    // transform: translateY(0px);
     // transform: scale(1);
   }
   // 50%{
   //   transform: scale(2);
   // }
-  to {
-    // transform: translateY($spacing * -1);
+  100% {
     transform: translateX($spacing * -0.5);
+    // transform: translateY($spacing * -1);
     // transform: scale(1);
   }
 }
-
 
 .page-wrapper {
   z-index: 2;

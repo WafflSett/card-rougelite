@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ISpell } from '../../../models/arena/card';
 
 @Component({
   selector: 'app-spell',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './spell.css',
 })
 export class Spell {
-
+  @Input() spell!: ISpell;
 }
