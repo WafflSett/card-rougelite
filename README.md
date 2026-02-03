@@ -12,3 +12,8 @@ Singleplayer only for now, but 2-4 player co-op is the dream!
   + Stardust
   + Void
 + Elemental reactions (Solar + Lunar = Eclipse)
+
+## Run in development mode:
+1. `npm i`
+2. `npx json-server cards.json`
+3. `npx ng serve --open`
