@@ -3,7 +3,7 @@
     {
       "title": "Shooting Star",
       "description": "Deal damage to a single target.",
-      "image": "shooting_star.png",
+      "image": "images/spells/shooting_star.png",
       "type": "spell",
       "cost": 1,
       "rarity": "Common",
@@ -12,7 +12,7 @@
     {
       "title": "Warming Light",
       "description": "Restore health to a friendly unit.",
-      "image": "warming_light.png",
+      "image": "images/spells/warming_light.png",
       "type": "spell",
       "rarity": "Common",
       "cost": 1,
@@ -23,7 +23,7 @@
     {
       "title": "The First",
       "description": "The first and cutest wolp to see the light of day. *Canis Minor*",
-      "image": "the_first.png",
+      "image": "images/units/the_first.png",
       "type": "unit",
       "rarity": "Common",
       "cost": 1,
@@ -36,7 +36,7 @@
     {
       "title": "Carina, the hull",
       "description": "Keel of the great ship in the sky. *Carina*",
-      "image": "carina.png",
+      "image": "images/units/carina.png",
       "type": "unit",
       "rarity": "Rare",
       "cost": 2,
@@ -56,7 +56,7 @@
     {
       "title": "Vela, the sails",
       "description": "Sails of the great ship in the sky. *Vela*",
-      "image": "vela.png",
+      "image": "images/units/vela.png",
       "type": "unit",
       "rarity": "Epic",
       "cost": 2,
@@ -76,7 +76,7 @@
     {
       "title": "The Last",
       "description": "The last thing you will ever behold. *Canis Major*",
-      "image": "the_last.png",
+      "image": "images/units/the_last.png",
       "type": "unit",
       "cost": 7,
       "rarity": "Legendary",

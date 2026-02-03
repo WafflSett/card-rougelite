@@ -2,8 +2,8 @@
 
 /* Config */
 $color-bg-1: #191919;
-$color-bg-2: #2e2e30;
-$color-particle: lightblue;
+$color-bg-2: #242427;
+$color-particle: rgb(103, 192, 221);
 $spacing: 2560px;
 $time-1: 60s;
 $time-2: 120s;
@@ -102,16 +102,16 @@ $time-4: 200s;
 //changes the movement of particles
 @keyframes animParticle {
   0% {
-    transform: translateX(0px);
-    // transform: translateY(0px);
+    // transform: translateX(0 - $spacing * 0.25);
+    transform: translateY(0);
     // transform: scale(1);
   }
   // 50%{
   //   transform: scale(2);
   // }
   100% {
-    transform: translateX($spacing * -0.5);
-    // transform: translateY($spacing * -1);
+    // transform: translateX($spacing * 1);
+    transform: translateY($spacing * -1);
     // transform: scale(1);
   }
 }
