@@ -7,7 +7,7 @@ import { ISpell, IUnit } from '../models/arena/card';
   providedIn: 'root',
 })
 export class DataService {
-  apiUrl = "http://localhost:3000";
+  apiUrl = "http://localhost:3001";
   constructor(private http: HttpClient) {}
 
   getSpells() : Observable<ISpell[]> {

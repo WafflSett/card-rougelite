@@ -1,9 +1,10 @@
-<div class="h-72 w-56 border rounded-xl p-3">
-  <span class="bg-blue-700 rounded-4xl w-10 h-10">{{card.cost}}</span>
-  <img [src]="card.image" alt="">
+<div class="h-72 w-56 border rounded-xl p-3 bg-gray-900 relative">
+  <span class="bg-blue-700 badge">{{card.cost}}</span>
+  <img [src]="card.image" class="overflow-hidden" alt="">
   <p class="text-center font-bold">{{card.title}}</p>
-  <!-- <p>{{card.description}}</p> -->
-  @if (card.type == 'unit') {
-
+  @if (unit) {
+    <p>UNIT</p>
+  }@else if (spell) {
+    <p>SPELL</p>
   }
 </div>
