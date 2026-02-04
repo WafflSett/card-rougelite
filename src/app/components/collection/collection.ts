@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ICard, ISpell, IUnit } from '../../../models/arena/card';
+import { ICard, ISpell, IUnit } from '@models/arena/card';
 import { Card } from "../card/card";
 
 @Component({

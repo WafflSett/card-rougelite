@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ICard, ISpell, IUnit } from '../../../models/arena/card';
+import { ICard, ISpell, IUnit } from '@models/arena/card';
 
 @Component({
   selector: 'app-card',
