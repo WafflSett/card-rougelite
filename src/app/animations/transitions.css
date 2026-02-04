@@ -1,0 +1,79 @@
+/* Menu needs special attention cus it has transform:translate(-50%,-50%) to center it */
+.menu-enter{
+  animation: menu-slide-down 1.5s ease-in-out;
+}
+@keyframes menu-slide-down {
+  from{
+    transform: translate(-50%, -74vh);
+  }
+  to{
+    transform: translate(-50%, -50%);
+  }
+}
+
+.menu-leave{
+  animation: menu-slide-up 1.5s ease-out;
+}
+@keyframes menu-slide-up {
+  from{
+    transform: translate(-50%, -50%);
+  }
+  to{
+    transform: translate(-50%, -75vh);
+  }
+}
+
+
+/* Card collection */
+.collection-enter{
+  animation: slide-up 1.5s ease-out;
+}
+@keyframes slide-up {
+  from{
+    transform: translateY(100vh);
+  }
+  to{
+    transform: translateY(0);
+  }
+}
+
+.collection-leave{
+  animation: slide-down 1.5s ease-out;
+}
+@keyframes slide-down {
+  from{
+    transform: translateY(0);
+  }
+  to{
+    transform: translateY(100vh);
+  }
+}
+
+
+/* misc animations */
+
+.fade-in {
+  animation: fade-in 1s;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    /* transform: translateY(20px); */
+  }
+  to {
+    opacity: 1;
+    /* transform: translateY(0); */
+  }
+}
+
+.fade-out {
+  animation: fade-out 1s;
+}
+@keyframes fade-out{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}

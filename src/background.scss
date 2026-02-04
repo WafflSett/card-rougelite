@@ -4,17 +4,22 @@
 $color-bg-1: #191919;
 $color-bg-2: #242427;
 $color-particle: rgb(103, 192, 221);
-$spacing: 2560px;
-$time-1: 60s;
-$time-2: 120s;
-$time-3: 180s;
-$time-4: 200s;
+$spacing: 2500px;
+// (original times)
+// $time-1: 60s;
+// $time-2: 120s;
+// $time-3: 180s;
+// $time-4: 200s;
+$time-1: 90s;
+$time-2: 60s;
+$time-3: 30s;
+$time-4: 15s;
 
 /* mixins */
 @function particles($max) {
   $val: 0px 0px $color-particle;
   @for $i from 1 through $max {
-    $val: #{$val}, math.random(math.div($spacing, 1px))+px math.random(math.div($spacing, 1px))+px $color-particle;
+    $val: #{$val}, math.random(math.div($spacing, 1px))+px math.random(math.div($spacing, 1px))+px hsl(calc(math.random(360)), math.random(50), calc(100 - math.random(50)));
   }
   @return $val;
 }
@@ -22,6 +27,7 @@ $time-4: 200s;
 @mixin particles($max) {
   box-shadow: particles($max);
   border-radius: 50%;
+  color: hsl;
 }
 
 /* Styles */
@@ -37,10 +43,9 @@ $time-4: 200s;
 
 .page-bg {
   background: linear-gradient($color-bg-1, $color-bg-2);
-  background-blend-mode: screen;
+  // background-blend-mode: screen;
   background-size: cover;
   filter: grayscale(100%);
-
 }
 
 .particle, .particle:after {
@@ -101,18 +106,21 @@ $time-4: 200s;
 
 //changes the movement of particles
 @keyframes animParticle {
-  0% {
+  $starting-opacity: 1 - math.random(40)/100; // opacity between 0.6 and 1
+  from {
     // transform: translateX(0 - $spacing * 0.25);
-    transform: translateY(0);
+    // transform: translateY(0);
     // transform: scale(1);
+    opacity: $starting-opacity;
   }
-  // 50%{
-  //   transform: scale(2);
-  // }
-  100% {
+  50%{
+    opacity: calc(1 - math.random(50)/100);
+  }
+  to {
     // transform: translateX($spacing * 1);
-    transform: translateY($spacing * -1);
+    // transform: translateY($spacing * -1);
     // transform: scale(1);
+    opacity: $starting-opacity;
   }
 }
 
@@ -120,9 +128,9 @@ $time-4: 200s;
   z-index: 2;
 }
 
-h4 {
+.neon-header {
   color: #fff;
-  font-family: Monoton;
+  // font-family: Monoton;
   -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
   -moz-animation: neon1 1.5s ease-in-out infinite alternate;
   animation: neon1 1.5s ease-in-out infinite alternate;

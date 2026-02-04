@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { Arena } from "./arena/arena";
 import { Collection } from "./collection/collection";
-import { ISpell, IUnit } from '../models/arena/card';
-import { DataService } from '../services/data-service';
+import { ISpell, IUnit } from '../../models/arena/card';
+import { DataService } from '../../services/data-service';
 
 @Component({
   selector: 'app-root',

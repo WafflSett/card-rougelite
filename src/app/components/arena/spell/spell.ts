@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ISpell } from '../../../models/arena/card';
+import { ISpell } from '../../../../models/arena/card';
 
 @Component({
   selector: 'app-spell',

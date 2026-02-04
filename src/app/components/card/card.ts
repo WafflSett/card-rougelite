@@ -25,7 +25,6 @@ export class Card {
   pointerMove(e:PointerEvent){
     const x = e.x;
     const y = e.y;
-    console.log(e.target);
     const cardElement = (e.target as HTMLDivElement);
     const rect = cardElement.getBoundingClientRect();
     const hw = rect.width / 2;

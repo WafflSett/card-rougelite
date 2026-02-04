@@ -1,0 +1,26 @@
+<div animate.enter="collection-enter">
+  <div class="m-auto h-20 text-center cursor-pointer pt-3" (click)="backClick()">Back to menu 🡅</div>
+  <div class="container m-auto h-full">
+    <h1 class="text-2xl text-center my-12">Collection:</h1>
+    <!-- <div class="flex space-x-2 space-y-2 mt-4 w-full justify-evenly">
+      @for (spell of spells; track $index) {
+        <app-card [card]="spell"></app-card>
+        }
+      </div>
+      <h1 class="text-2xl">Units:</h1>
+      <div class="flex space-x-2 space-y-2 mt-4 w-full justify-evenly flex-wrap">
+        @for (unit of units; track $index) {
+          <app-card [card]="unit"></app-card>
+          }
+        </div> -->
+    <div class="flex space-x-2 space-y-2 mt-4 w-full justify-evenly flex-wrap">
+      @for (card of allCards; track $index) {
+        <div style="--index: {{$index}}">
+          <app-card [card]="card"></app-card>
+        </div>
+      }
+    </div>
+
+  </div>
+
+</div>

@@ -36,7 +36,7 @@
     {
       "title": "Carina, the hull",
       "description": "Keel of the great ship in the sky. *Carina*",
-      "image": "images/units/carina.png",
+      "image": "images/units/the_first.png",
       "type": "unit",
       "rarity": "Rare",
       "cost": 2,
@@ -56,7 +56,7 @@
     {
       "title": "Vela, the sails",
       "description": "Sails of the great ship in the sky. *Vela*",
-      "image": "images/units/vela.png",
+      "image": "images/units/the_first.png",
       "type": "unit",
       "rarity": "Epic",
       "cost": 2,
