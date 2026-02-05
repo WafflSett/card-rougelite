@@ -27,3 +27,28 @@
   mask-size: contain;
   mask-repeat: no-repeat; */
 }
+
+.card-details{
+  width: 28vw;
+  height: 36vw;
+  /* display: block; */
+  /* & img{
+    width: 100%;
+  } */
+  cursor: default;
+}
+
+.card-container{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

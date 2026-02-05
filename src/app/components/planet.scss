@@ -1,0 +1,24 @@
+.bg-planet{
+  position: fixed;
+  background-size: cover;
+  z-index: -1;
+  width: 40vw;
+  height: 40vw;
+  background:
+  radial-gradient(circle at 50% 50%, rgba(255,255,255, 1) 0%, rgba(255,255,255, 1) 50%, rgba(0,0,0,0) 51%,);
+  transition: 2s ease-in-out;
+  bottom: -25%;
+  right: -10%;
+}
+
+.planet-normal{
+ transform: translate(0);
+}
+
+.planet-up-right{
+  transform: translateY(-80vh);
+}
+
+.planet-up-left{
+  transform: translateY(-80vh) translateX(-85vw);
+}

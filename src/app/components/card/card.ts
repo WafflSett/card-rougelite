@@ -9,9 +9,12 @@ import { ICard, ISpell, IUnit } from '@models/arena/card';
 })
 export class Card {
   @Input() card!: ICard;
-
+  detailsMode: boolean = false;
   spell: ISpell | undefined;
   unit: IUnit | undefined;
+
+  cardClasses : string[] = ['rounded-2xl', 'relative', 'select-none', 'card', 'cursor-pointer', 'bg-gray-900'];
+  wrapperClasses: string = '';
 
   ngOnInit() {
     console.log(this.card);
@@ -39,5 +42,25 @@ export class Card {
     const cardElement = (e.target as HTMLDivElement);
     cardElement.style.setProperty("--ratio-x", "0");
     cardElement.style.setProperty("--ratio-y", "0");
+  }
+
+  toggleDetails(e:any|undefined = undefined){
+    if (e) {
+      e.stopPropagation();
+    }
+    console.log("asd");
+
+    this.detailsMode = !this.detailsMode;
+    if (this.detailsMode) {
+      this.cardClasses.push('card-details')
+    }else{
+      this.cardClasses.pop();
+    }
+  }
+
+  closeDetails(){
+    if (this.detailsMode) {
+      this.toggleDetails();
+    }
   }
 }

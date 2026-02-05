@@ -4,6 +4,7 @@ export interface ICard {
   title: string,
   description: string,
   image:string,
+  image_full: string,
   type: string,
   cost: number,
   rarity: ERarities

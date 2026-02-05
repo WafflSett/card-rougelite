@@ -1,5 +1,5 @@
 @import url('../animations/transitions.css');
-@import url('./app.scss');
+@import url('./planet.scss');
 
 .menu {
   transform: translate(-50%, -50%);

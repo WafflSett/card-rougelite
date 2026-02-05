@@ -1,1 +1,11 @@
 @import url('../../animations/transitions.css');
+
+.collection-flex-box{
+  max-height: 95%;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.back-button{
+  height: 5%;
+}
