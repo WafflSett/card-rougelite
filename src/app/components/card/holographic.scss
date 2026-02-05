@@ -7,11 +7,11 @@
     initial-value: 0;
   }
 
-  @property --correction {
-    syntax: "<percent>";
-    inherits: true;
-    initial-value: 0%;
-  }
+  // @property --correction {
+  //   syntax: "<percent>";
+  //   inherits: true;
+  //   initial-value: 0%;
+  // }
 
   @property --ratio-y {
     syntax: "<number>";
@@ -19,40 +19,33 @@
     initial-value: 0;
   }
 
+  $correction: 0%;
+
   .holo-bg {
     z-index: 2;
     position: absolute;
     border-radius: inherit;
-    --size: 0;
-    top: var(--size);
-    right: var(--size);
-    bottom: var(--size);
-    left: var(--size);
-    background:
-    /* ellipse at x y, color position%, color position%, color position% */
-    /* radial-gradient(
-        ellipse at calc(90% - var(--ratio-x) * 20%) calc(0% - var(--ratio-y) * 20%),
-        rgba(255, 255, 255, 0.7),
-        var(--c1) 1%,
-        hsl(306deg 100% 63% / 76%) 20%,
-        transparent
-      ), */
-      linear-gradient(
-        110deg,
-        #0093ff calc(10% - var(--ratio-x) * 20%),
-        #5bd1f5 calc(20% - var(--ratio-x) * 20%),
-        #0093ff calc(30% - var(--ratio-x) * 20%),
-        hsl(306deg 100% 63% / 76%) calc(60% - var(--ratio-x) * 20%),
-        transparent calc(100% - var(--ratio-x) * 20%),
-        transparent
-      );
-    transition: all 0.2s linear, opacity 0.8s ease;
+    $size: 0;
+    top: $size;
+    right: $size;
+    bottom: $size;
+    left: $size;
+
+    transition: transform 0.2s linear, opacity 1s ease;
     mix-blend-mode: hard-light;
     opacity: 0.1;
     pointer-events: none;
 
     &.bg-common {
-      background: linear-gradient(
+      background:
+      radial-gradient(
+        ellipse at calc(90% - var(--ratio-x) * 20%) calc(0% - var(--ratio-y) * 20%),
+        rgba(255, 255, 255, 0.7),
+        white 1%,
+        hsla(305, 72%, 90%, 0.76) 20%,
+        transparent
+      ),
+      linear-gradient(
           110deg,
           #2c8bcf calc(10% - var(--ratio-x) * 20%),
           #4fa8c4 calc(20% - var(--ratio-x) * 20%),
@@ -106,25 +99,24 @@
     content: "";
     position: absolute;
     border-radius: inherit;
-    --size: 0;
-    top: var(--size);
-    right: var(--size);
-    bottom: var(--size);
-    left: var(--size);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     pointer-events: none;
     background:
     linear-gradient(
       110deg,
-      #2c8bcf calc(10% - var(--ratio-x) * 20% - var(--correction)),
-      #4fa8c4 calc(20% - var(--ratio-x) * 20% - var(--correction)),
-      #187ec7 calc(30% - var(--ratio-x) * 20% - var(--correction)),
+      #2c8bcf calc(10% - var(--ratio-x) * 20% - $correction),
+      #4fa8c4 calc(20% - var(--ratio-x) * 20% - $correction),
+      #187ec7 calc(30% - var(--ratio-x) * 20% - $correction),
       hsla(192, 83%, calc(77% - 20% * var(--ratio-x)), 1)
-        calc(40% - var(--ratio-x) * 20% - var(--correction)),
-      transparent calc(60% - var(--ratio-x) * 20% - var(--correction)),
-      #f171e0 calc(70% - var(--ratio-x) * 20% - var(--correction)),
-      black calc(80% - var(--ratio-x) * 20% - var(--correction))
+        calc(40% - var(--ratio-x) * 20% - $correction),
+      transparent calc(60% - var(--ratio-x) * 20% - $correction),
+      #f171e0 calc(70% - var(--ratio-x) * 20% - $correction),
+      black calc(80% - var(--ratio-x) * 20% - $correction)
     );
-    transition: all 0.2s linear;
+    transition: 0.2s linear;
     pointer-events: none;
   }
 
@@ -135,14 +127,14 @@
     color: transparent;
     background:linear-gradient(
       110deg,
-      #2c8bcf calc(10% - var(--ratio-x) * 20% - var(--correction)),
-      #4fa8c4 calc(20% - var(--ratio-x) * 20% - var(--correction)),
-      #187ec7 calc(30% - var(--ratio-x) * 20% - var(--correction)),
+      #2c8bcf calc(10% - var(--ratio-x) * 20% - $correction),
+      #4fa8c4 calc(20% - var(--ratio-x) * 20% - $correction),
+      #187ec7 calc(30% - var(--ratio-x) * 20% - $correction),
       hsla(192, 83%, calc(77% - 20% * var(--ratio-x)), 1)
-        calc(40% - var(--ratio-x) * 20% - var(--correction)),
-      transparent calc(60% - var(--ratio-x) * 20% - var(--correction)),
-      #f171e0 calc(70% - var(--ratio-x) * 20% - var(--correction)),
-      black calc(80% - var(--ratio-x) * 20% - var(--correction))
+        calc(40% - var(--ratio-x) * 20% - $correction),
+      transparent calc(60% - var(--ratio-x) * 20% - $correction),
+      #f171e0 calc(70% - var(--ratio-x) * 20% - $correction),
+      black calc(80% - var(--ratio-x) * 20% - $correction)
     );
   } */
 
@@ -153,13 +145,15 @@
     transform-style: preserve-3d;
     width: 14rem;
     height: 18rem;
-    transition: transform 1.5s ease-out;
+    transition: 1.5s ease-out;
     transform: rotateY(calc(-20deg * var(--ratio-x))) rotateX(calc(20deg * var(--ratio-y)));
-    --correction: 100%;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    $correction: 100%;
     &:hover {
+      box-shadow: calc(-10px * var(--ratio-x)) calc(-10px * var(--ratio-y)) 5px rgba(0,0,0,0.5);
       transform: rotateY(calc(-20deg * var(--ratio-x)))
         rotateX(calc(20deg * var(--ratio-y)));
-        --correction: 0%;
+        $correction: 0%;
         transition: transform 0.1s linear;
       .holo-bg {
         opacity: 0.15;

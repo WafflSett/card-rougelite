@@ -18,11 +18,12 @@
   <span class="bg-blue-700 badge">{{card.cost}}</span>
   <img [src]="card.image" [class]="{'overflow-hidden':true, 'spell-img':spell}" alt="">
   <div class="absolute bottom-0 w-full p-3 h-32">
-    <p class="text-center font-bold">{{card.title}}</p>
     @if (unit) {
       <p class="text-center">{{unit.attack}} - {{unit.health}}</p>
     }@else if (spell) {
-      <p>{{spell.description}}</p>
+      <p class="text-center">{{spell.element}}</p>
     }
+    <p class="text-center font-bold">{{card.title}}</p>
+    <p class="text-justify text-sm">{{card.description}}</p>
   </div>
 </div>

@@ -5,21 +5,21 @@ $color-bg-1: #191919;
 $color-bg-2: #242427;
 $color-particle: rgb(103, 192, 221);
 $spacing: 2500px;
-// (original times)
+// (original times for movement)
 // $time-1: 60s;
 // $time-2: 120s;
 // $time-3: 180s;
 // $time-4: 200s;
-$time-1: 90s;
-$time-2: 60s;
-$time-3: 30s;
-$time-4: 15s;
+$time-1: 8s; // big stars
+$time-2: 5s; // mid size
+$time-3: 3s; // mid size
+$time-4: 25s; // small stars
 
 /* mixins */
 @function particles($max) {
   $val: 0px 0px $color-particle;
   @for $i from 1 through $max {
-    $val: #{$val}, math.random(math.div($spacing, 1px))+px math.random(math.div($spacing, 1px))+px hsl(calc(math.random(360)), math.random(50), calc(100 - math.random(50)));
+    $val: #{$val}, math.random(math.div($spacing, 1px))+px math.random(math.div($spacing, 1px))+px hsl(calc(math.random(360)), math.random(50) * 1%, calc(100 - math.random(50)) * 1%);
   }
   @return $val;
 }
@@ -27,13 +27,13 @@ $time-4: 15s;
 @mixin particles($max) {
   box-shadow: particles($max);
   border-radius: 50%;
-  color: hsl;
 }
 
 /* Styles */
 
 .page-bg, .animation-wrapper {
   position: fixed;
+  background-size: cover;
   top: 0;
   left: 0;
   width: 100%;
@@ -41,12 +41,21 @@ $time-4: 15s;
   z-index: -1;
 }
 
-.page-bg {
-  background: linear-gradient($color-bg-1, $color-bg-2);
-  // background-blend-mode: screen;
-  background-size: cover;
-  filter: grayscale(100%);
+.page-wrapper {
+  z-index: 2;
 }
+
+.page-bg {
+  background:
+  radial-gradient(circle, rgba(192, 63, 59, 0.1) 0%, rgba(70, 149, 252, 0.1) 100%),
+  linear-gradient(135deg,rgba(0, 0, 0, 0) 0%, rgba(9, 9, 121, 0.1) 35%, rgba(0, 212, 255, 0.1) 50%,  rgba(1, 113, 136, 0.1) 65%, rgba(0,0,0,0)100%),
+  linear-gradient($color-bg-1, $color-bg-2),
+  ;
+  // background-blend-mode: screen;
+  filter: saturate(0.8);
+}
+
+/* Particle generation + styles */
 
 .particle, .particle:after {
   background: transparent;
@@ -59,10 +68,10 @@ $time-4: 15s;
 }
 
 .particle-1 {
-  animation: animParticle $time-1 linear infinite;
+  animation: animParticle $time-1 linear infinite ;
   @include particles(1000);
-  height: 2px;
-  width: 2px;
+  height: 3px;
+  width: 3px;
 }
 
 .particle-1:after {
@@ -72,7 +81,7 @@ $time-4: 15s;
 }
 
 .particle-2 {
-  animation: animParticle $time-2 linear infinite;
+  animation: animParticle $time-2 linear infinite ;
   @include particles(800);
   height: 2px;
   width: 2px;
@@ -80,8 +89,15 @@ $time-4: 15s;
 
 .particle-2:after {
   @include particles(500);
-  height: 3px;
-  width: 3px;
+  height: 2px;
+  width: 2px;
+}
+
+.particle-3 {
+  animation: animParticle $time-3 linear infinite;
+  @include particles(800);
+  height: 2px;
+  width: 2px;
 }
 
 .particle-3:after {
@@ -93,6 +109,7 @@ $time-4: 15s;
 
 .particle-4 {
   animation: animParticle $time-4 linear infinite;
+  animation-delay: calc(math.random() * 1s);
   @include particles(1200);
   height: 1px;
   width: 1px;
@@ -106,7 +123,8 @@ $time-4: 15s;
 
 //changes the movement of particles
 @keyframes animParticle {
-  $starting-opacity: 1 - math.random(40)/100; // opacity between 0.6 and 1
+  $starting-opacity: calc(1 - calc(math.random(30) / 100)); // opacity between 0.6 and 1
+  // $starting-opacity: 1;
   from {
     // transform: translateX(0 - $spacing * 0.25);
     // transform: translateY(0);
@@ -114,7 +132,8 @@ $time-4: 15s;
     opacity: $starting-opacity;
   }
   50%{
-    opacity: calc(1 - math.random(50)/100);
+    // opacity: calc(1 - calc(math.random(60) / 100));
+    opacity: 0.3;
   }
   to {
     // transform: translateX($spacing * 1);
@@ -124,10 +143,8 @@ $time-4: 15s;
   }
 }
 
-.page-wrapper {
-  z-index: 2;
-}
 
+/* neon effect */
 .neon-header {
   color: #fff;
   // font-family: Monoton;
@@ -137,7 +154,6 @@ $time-4: 15s;
 }
 
 /*glow for webkit*/
-
 @-webkit-keyframes neon1 {
   from {
     text-shadow: 0 0 10px #fff,
@@ -162,7 +178,6 @@ $time-4: 15s;
 }
 
 /*glow for mozilla*/
-
 @-moz-keyframes neon1 {
   from {
     text-shadow: 0 0 10px #fff,
@@ -187,7 +202,6 @@ $time-4: 15s;
 }
 
 /*glow*/
-
 @keyframes neon1 {
   from {
     text-shadow: 0 0 10px #fff,
