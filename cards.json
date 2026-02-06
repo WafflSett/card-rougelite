@@ -2,21 +2,37 @@
   "spells": [
     {
       "title": "Shooting Star",
-      "description": "Deal damage to a single target.",
+      "description": "Piece of space debris floating though the sky.",
       "image": "images/spells/shooting_star.png",
+      "image_full": "images/spells/shooting_star.png",
       "type": "spell",
       "cost": 1,
       "rarity": "Common",
-      "element": "Stardust"
+      "element": "Stardust",
+      "abilities":[
+        {
+          "event" : "On play",
+          "name": "Ping",
+          "description": "Deal 1 damage to a single target."
+        }
+      ]
     },
     {
       "title": "Warming Light",
-      "description": "Restore health to a friendly unit.",
+      "description": "The light of the sun pierces the darkest of skies!",
       "image": "images/spells/warming_light.png",
+      "image_full": "images/spells/warming_light.png",
       "type": "spell",
       "rarity": "Common",
       "cost": 1,
-      "element": "Solar/Lunar"
+      "element": "Solar/Lunar",
+      "abilities":[
+        {
+          "event" : "On play",
+          "name": "Warmth",
+          "description": "Restore 1 health to an ally."
+        }
+      ]
     }
   ],
   "units": [
@@ -38,15 +54,16 @@
       "title": "Carina, the hull",
       "description": "Keel of the great ship in the sky. *Carina*",
       "image": "images/units/the_first.png",
+      "image_full": "images/units/canis_full.png",
       "type": "unit",
       "rarity": "Rare",
       "cost": 2,
       "attack": 1,
       "health": 3,
-      "keywords":[
+      "keywords": [
         "Tough"
       ],
-      "effects":[
+      "abilities": [
         {
           "event": "On hit",
           "name": "Sails Up!",
@@ -58,15 +75,16 @@
       "title": "Vela, the sails",
       "description": "Sails of the great ship in the sky. *Vela*",
       "image": "images/units/the_first.png",
+      "image_full": "images/units/canis_full.png",
       "type": "unit",
       "rarity": "Epic",
       "cost": 2,
       "attack": 2,
       "health": 1,
-      "keywords":[
+      "keywords": [
         "Elusive"
       ],
-      "effects":[
+      "abilities": [
         {
           "event": "On attack",
           "name": "Windward strike",
@@ -88,11 +106,11 @@
         "Elusive",
         "Overwhelm"
       ],
-      "effects": [
+      "abilities": [
         {
           "event": "Aura",
           "name": "Celestial might",
-          "description": "While I'm in play: Disable the effects of all other cards on the board."
+          "description": "Disable the abilities of all other cards on the board."
         }
       ]
     }

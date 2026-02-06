@@ -7,13 +7,8 @@ export interface ICard {
   image_full: string,
   type: string,
   cost: number,
+  abilities: IAbility[] | undefined,
   rarity: ERarities
-}
-
-export interface IEffect {
-  event : EEvents,
-  name: string,
-  description: string,
 }
 
 export interface ISpell extends ICard {
@@ -23,6 +18,11 @@ export interface ISpell extends ICard {
 export interface IUnit extends ICard {
   attack: number,
   health: number,
-  effects: IEffect[] | undefined,
   keywords: EKeywords[]
+}
+
+export interface IAbility {
+  event : EEvents,
+  name: string,
+  description: string,
 }

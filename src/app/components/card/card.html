@@ -1,41 +1,85 @@
-<div [class]="{'card-container':detailsMode}" (click)="closeDetails()">
-  <div [classList]="cardClasses.join(' ')" (pointermove)="pointerMove($event)" (pointerleave)="pointerLeave($event)" (click)="toggleDetails($event)">
-    <!-- holographic effect based on rarity -->
-    @switch (this.card.rarity) {
-      @case ('Common') {
-        <div class="holo-bg bg-common"></div>
-      }
-      @case ('Rare') {
-        <div class="holo-bg bg-rare"></div>
-      }
-      @case ('Epic') {
-        <div class="holo-bg bg-epic"></div>
-      }
-      @case ('Legendary') {
-        <div class="holo-bg bg-legendary"></div>
-      }
-    }
-    <div class="holo-lines"></div>
-    <span class="bg-blue-700 badge">{{card.cost}}</span>
-    <img [src]="card.image" [class]="{'overflow-hidden':true, 'spell-img':spell}" alt="">
-    <div class="absolute bottom-0 w-full p-3 h-32">
-      @if (unit) {
-        <p class="text-center">{{unit.attack}} - {{unit.health}}</p>
-        <p class="text-center font-bold">{{card.title}}</p>
-        <p class="text-center text-sm">
-          @if (!unit.effects) {
-            <span>This unit has no ability.</span>
-          }@else {
-            @for (effect of unit.effects; track $index) {
-              <span>{{effect.description}}</span>
-            }
+<!-- Closeup of card -->
+@if (detailsMode) {
+  <div [class]="{'card-container':detailsMode}" (click)="closeDetails()" animate.enter="fade-in" animate.leave="fade-out">
+    <app-card [card]="card" [cardClasses]="cardClasses"></app-card>
+    <div class="tooltip-container">
+      @for (ability of card.abilities; track $index) {
+        <p class="text-start tooltip rounded-2xl p-5">
+          @if (ability.event != "On play") {
+            <span class="text-lg">
+              {{ability.event}}: {{getAbilityDescription(ability)}}
+            </span>
           }
         </p>
-      }@else if (spell) {
-        <p class="text-center">{{spell.element}}</p>
-        <p class="text-center font-bold">{{card.title}}</p>
-        <p class="text-justify text-sm">{{card.description}}</p>
       }
     </div>
   </div>
+}
+<!-- Image showcase -->
+@if (imageOnly) {
+  <div class="showcase w-screen h-screen fixed left-0 top-0 flex items-center flex-col" (click)="toggleShowcase($event)" animate.enter="fade-in" animate.leave="fade-out">
+    <img [src]="card.image_full" class="mx-auto object-contain">
+    <p class="my-auto">{{card.description}}</p>
+  </div>
+}
+<div [ngClass]="{'rounded-2xl relative select-none card cursor-pointer bg-gray-900': true, 'card-details':amIDetailsCard()}" (pointermove)="pointerMove($event)" (pointerleave)="pointerLeave($event)" (click)="toggleDetails($event)">
+  <!-- holographic effect based on rarity -->
+  @switch (this.card.rarity) {
+    @case ('Common') {
+      <div class="holo-bg bg-common"></div>
+    }
+    @case ('Rare') {
+      <div class="holo-bg bg-rare"></div>
+    }
+    @case ('Epic') {
+      <div class="holo-bg bg-epic"></div>
+    }
+    @case ('Legendary') {
+      <div class="holo-bg bg-legendary"></div>
+    }
+  }
+  <div class="holo-lines"></div>
+
+  <span class="bg-blue-700 badge">{{card.cost}}</span>
+
+  <img [src]="card.image" [class]="{'overflow-hidden':true, 'spell-img':spell}" alt="">
+
+  <!-- Card description start -->
+  <div class="absolute bottom-0 w-full p-3 h-3/6">
+    @if (unit) {
+      <p class="text-center">{{unit.attack}} - {{unit.health}}</p>
+    }@else if (spell) {
+      <p class="text-center">{{spell.element}}</p>
+    }
+    <p class="text-center font-bold">{{card.title}}</p>
+    <!-- Display card abilities -->
+      @if (!card.abilities) {
+        <p class="text-center text-sm">This unit has no ability.</p>
+      }@else {
+        @for (ability of card.abilities; track $index) {
+          <p class="line-clamp-3 text-sm text-center">
+            @if (ability.event != "On play") {
+              <span class="text-sm event-text">
+                {{ability.event}}:
+              </span>
+            }
+            <!-- Convert *text* to <i>text</i> -->
+              @if (ability.description.split('*').length==1) {
+                <span>{{ability.description}}</span>
+              }@else {
+                @for (item of ability.description.split('*'); track $index) {
+                  @if ($index%2==1) {
+                    <i>{{item}}</i>
+                  }@else {
+                    <span>{{item}}</span>
+                  }
+                }
+              }
+            <!-- text conversion end -->
+          </p>
+        }
+      }
+    <!-- card abilites end -->
+  </div>
+  <!-- card description end -->
 </div>

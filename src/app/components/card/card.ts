@@ -1,20 +1,21 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { ICard, ISpell, IUnit } from '@models/arena/card';
+import { IAbility, ICard, ISpell, IUnit } from '@models/arena/card';
+import { EEvents } from '@models/enums/cardEnums';
 
 @Component({
   selector: 'app-card',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './card.html',
   styleUrl: './card.css',
 })
 export class Card {
+  @Input() cardClasses : string[] = ['rounded-2xl', 'relative', 'select-none', 'card', 'cursor-pointer', 'bg-gray-900'];
   @Input() card!: ICard;
   detailsMode: boolean = false;
   spell: ISpell | undefined;
   unit: IUnit | undefined;
-
-  cardClasses : string[] = ['rounded-2xl', 'relative', 'select-none', 'card', 'cursor-pointer', 'bg-gray-900'];
-  wrapperClasses: string = '';
+  imageOnly: boolean = false;
 
   ngOnInit() {
     console.log(this.card);
@@ -26,16 +27,19 @@ export class Card {
   }
 
   pointerMove(e:PointerEvent){
-    const x = e.x;
-    const y = e.y;
-    const cardElement = (e.target as HTMLDivElement);
-    const rect = cardElement.getBoundingClientRect();
-    const hw = rect.width / 2;
-    const hh = rect.height / 2;
-    const ratioX = (x - (rect.x + hw)) / hw;
-    const ratioY = (y - (rect.y + hh)) / hh;
-    cardElement.style.setProperty("--ratio-x", ratioX.toString());
-    cardElement.style.setProperty("--ratio-y", ratioY.toString());
+    if (!this.amIDetailsCard()) {
+
+      const x = e.x;
+      const y = e.y;
+      const cardElement = (e.target as HTMLDivElement);
+      const rect = cardElement.getBoundingClientRect();
+      const hw = rect.width / 2;
+      const hh = rect.height / 2;
+      const ratioX = (x - (rect.x + hw)) / hw;
+      const ratioY = (y - (rect.y + hh)) / hh;
+      cardElement.style.setProperty("--ratio-x", ratioX.toString());
+      cardElement.style.setProperty("--ratio-y", ratioY.toString());
+    }
   }
 
   pointerLeave(e:any){
@@ -48,8 +52,10 @@ export class Card {
     if (e) {
       e.stopPropagation();
     }
-    console.log("asd");
-
+    if (this.amIDetailsCard()) {
+      this.toggleShowcase();
+      return;
+    }
     this.detailsMode = !this.detailsMode;
     if (this.detailsMode) {
       this.cardClasses.push('card-details')
@@ -58,9 +64,38 @@ export class Card {
     }
   }
 
+  toggleShowcase(e:PointerEvent | undefined= undefined){
+    if (e) {
+      e.stopPropagation();
+    }
+    this.imageOnly = !this.imageOnly;
+  }
+
   closeDetails(){
     if (this.detailsMode) {
       this.toggleDetails();
+    }
+  }
+
+  amIDetailsCard(){
+    if (this.detailsMode == false && this.cardClasses.includes('card-details')) {
+      return true;
+    }
+    return false;
+  }
+
+  getAbilityDescription(ability:IAbility){
+    switch (ability.event) {
+      case EEvents.OnAttack:
+        return 'This ability triggers when I attack.';
+      case EEvents.Aura:
+        return 'This ability is active while I am in play.';
+      case EEvents.OnTargeted:
+        return 'This ability triggers when I am targeted by a spell or ability.';
+      case EEvents.OnHit:
+        return 'This ability triggers when I am hit by a spell or unit.';
+      default:
+        return '';
     }
   }
 }
