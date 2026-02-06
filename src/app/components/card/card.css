@@ -3,16 +3,18 @@
 
 
 .badge {
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  border-radius: 0% 0% 50% 0%;
+  width: 30px;
+  height: 30px;
   padding: 0px;
+  background-color: #3262a8;
+  font-size: 19px;
   position: absolute;
   display: block;
   text-align: center;
-  z-index: 0;
-  top: 1rem;
-  left: 1rem;
+  /* z-index: 0; */
+  top:0;
+  left:0;
 }
 
 .spell-img{
@@ -38,7 +40,7 @@
   }
 }
 
-.card-container{
+.details-container{
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,0.5);
@@ -67,15 +69,29 @@
 }
 
 .tooltip{
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.8);
 }
 
 .tooltip-container{
-  z-index: 3;
+  z-index: 5;
   width: 15%;
   display: block;
   position: absolute;
   left: 25%;
   top: 25%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,0);
 }
+
+.keyword{
+  background-color: rgba(0,0,0,0.8);
+  font-style: italic;
+}
+
+.atk-stat{
+  background-color: #b8941f;
+}
+
+.hp-stat{
+  background-color: #822432;
+}
+

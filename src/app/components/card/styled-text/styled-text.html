@@ -1,0 +1,11 @@
+@if (inText.split('*').length==1) {
+  <span>{{inText}}</span>
+}@else {
+  @for (item of inText.split('*'); track $index) {
+    @if ($index%2==1) {
+      <i>{{item}}</i>
+    }@else {
+      <span>{{item}}</span>
+    }
+  }
+}
