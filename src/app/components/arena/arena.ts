@@ -1,7 +1,7 @@
 import { ICard, IUnit } from '@models/arena/card';
 import { GameService } from '@services/game-service';
 import { Component } from '@angular/core';
-import { CdkDropList, CdkDrag, CdkDropListGroup, CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop'
+import { CdkDropList, CdkDrag, CdkDropListGroup, CdkDragDrop, transferArrayItem, moveItemInArray } from '@angular/cdk/drag-drop'
 import { Unit } from "./unit/unit";
 import { Card } from "../card/card";
 
@@ -26,11 +26,10 @@ export class Arena {
     this.enemyBoard = [];
   }
 
-  drop(event: CdkDragDrop<ICard[]> | CdkDragDrop<IUnit[]>) {
-    console.log(event.container);
-    console.log(event.previousContainer);
-
-    if (event.previousContainer != event.container) {
+  drop(event: CdkDragDrop<ICard[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else{
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -40,10 +39,14 @@ export class Arena {
     }
   }
 
-  isUnit(item: CdkDrag<ICard>){
+  playUnitPredicate(item: CdkDrag<ICard>){
     if (item.data.type == "unit") {
       return true;
     }
+    return false;
+  }
+
+  noReturnPredicate(){
     return false;
   }
 }

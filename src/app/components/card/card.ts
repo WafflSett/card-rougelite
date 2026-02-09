@@ -26,8 +26,13 @@ export class Card {
   imageOnly: boolean = false;
   isTooltipEnabled: boolean = false;
 
-  ngOnInit() {
-    // console.log(this.card);
+  ngOnChanges(){
+    this.separateByType();
+  }
+
+  separateByType(){
+    this.spell = undefined;
+    this.unit = undefined;
     if (this.card.type == 'unit') {
       this.unit = this.card as IUnit;
     } else if (this.card.type == 'spell') {

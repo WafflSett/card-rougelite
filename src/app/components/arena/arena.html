@@ -1,19 +1,36 @@
 <div class="w-screen h-screen">
-  <div class="w-full h-2/6 bg-gray-200" id="enemyBoard">
+  <div class="container mx-auto flex justify-center flex-nowrap space-y-5 w-full h-1/12 bg-gray-300"></div>
+  <div class="container mx-auto flex justify-center flex-nowrap space-y-5 w-full h-3/12 bg-gray-400" id="enemyBoard">
     @for (card of enemyBoard; track $index) {
       <app-unit [unit]="card"></app-unit>
     }
   </div>
-
-  <div cdkDropListGroup class="h-4/6">
-    <div class="container mx-auto flex mt-4 justify-center flex-nowrap space-y-5 w-full h-1/2 bg-gray-300" id="playerBoard" [cdkDropListEnterPredicate]="isUnit" cdkDropList [cdkDropListData]="playerBoard"  (cdkDropListDropped)="drop($event)">
+  <div cdkDropListGroup class="h-8/12">
+    <div
+      class="container mx-auto flex justify-center flex-nowrap space-y-5 w-full h-1/2 bg-gray-300"
+      id="playerBoard"
+      cdkDropList
+      [cdkDropListData]="playerBoard"
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListEnterPredicate]="playUnitPredicate"
+    >
       @for (card of playerBoard; track $index) {
         <app-card [card]="card" cdkDrag [cdkDragData]="card"></app-card>
       }
     </div>
-
-    <div class="container mx-auto flex mt-4 justify-center flex-nowrap space-y-5 w-full h-1/2 bg-gray-400" id="playerHand" cdkDropListSortingDisabled [cdkDropListData]="hand" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div
+      class="container mx-auto flex justify-center flex-nowrap space-y-5 w-full h-1/2 bg-gray-400"
+      id="playerHand"
+      cdkDropListSortingDisabled
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      [cdkDropListData]="hand"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListEnterPredicate]="noReturnPredicate"
+    >
       @for (card of hand; track $index) {
+        <!-- <div cdkDrag [cdkDragData]="card" class="p-2 bg-blue-400 m-1 ">{{card.title}} - {{card.type}}</div> -->
         <app-card [card]="card" cdkDrag [cdkDragData]="card"></app-card>
       }
     </div>
