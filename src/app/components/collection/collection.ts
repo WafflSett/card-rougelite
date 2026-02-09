@@ -1,3 +1,4 @@
+import { GameService } from '@services/game-service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICard, ISpell, IUnit } from '@models/arena/card';
 import { Card } from "../card/card";
@@ -9,13 +10,12 @@ import { Card } from "../card/card";
   styleUrl: './collection.css',
 })
 export class Collection {
-  @Input() spells!: ISpell[]
-  @Input() units!: IUnit[]
   @Output() back: EventEmitter<void> = new EventEmitter<void>();
   allCards:ICard[] = [];
 
+  constructor(private gameService:GameService){}
   ngOnInit(){
-    this.allCards = [...this.spells, ...this.units];
+    this.allCards = this.gameService.allCards;
   }
 
   backClick(){

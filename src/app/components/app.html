@@ -15,6 +15,6 @@
 }
 @else if (collection) {
   <div animate.leave="collection-leave">
-    <app-collection [spells]="spells" [units]="units" (back)="collection = false"></app-collection>
+    <app-collection (back)="collection = false"></app-collection>
   </div>
 }

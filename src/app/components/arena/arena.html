@@ -1,1 +1,21 @@
-<p class="text-center text-4xl">WIP</p>
+<div class="w-screen h-screen">
+  <div class="w-full h-2/6 bg-gray-200" id="enemyBoard">
+    @for (card of enemyBoard; track $index) {
+      <app-unit [unit]="card"></app-unit>
+    }
+  </div>
+
+  <div cdkDropListGroup class="h-4/6">
+    <div class="container mx-auto flex mt-4 justify-center flex-nowrap space-y-5 w-full h-1/2 bg-gray-300" id="playerBoard" [cdkDropListEnterPredicate]="isUnit" cdkDropList [cdkDropListData]="playerBoard"  (cdkDropListDropped)="drop($event)">
+      @for (card of playerBoard; track $index) {
+        <app-card [card]="card" cdkDrag [cdkDragData]="card"></app-card>
+      }
+    </div>
+
+    <div class="container mx-auto flex mt-4 justify-center flex-nowrap space-y-5 w-full h-1/2 bg-gray-400" id="playerHand" cdkDropListSortingDisabled [cdkDropListData]="hand" cdkDropList (cdkDropListDropped)="drop($event)">
+      @for (card of hand; track $index) {
+        <app-card [card]="card" cdkDrag [cdkDragData]="card"></app-card>
+      }
+    </div>
+  </div>
+</div>

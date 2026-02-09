@@ -27,7 +27,7 @@ export class Card {
   isTooltipEnabled: boolean = false;
 
   ngOnInit() {
-    console.log(this.card);
+    // console.log(this.card);
     if (this.card.type == 'unit') {
       this.unit = this.card as IUnit;
     } else if (this.card.type == 'spell') {

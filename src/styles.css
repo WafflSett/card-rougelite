@@ -6,3 +6,7 @@ body {
     color: white;
     overflow: hidden;
 }
+
+.cdk-drag{
+  overflow: hidden;
+}
