@@ -1,4 +1,4 @@
-import { ICard, IUnit } from '@models/arena/card';
+import { ICard } from '@models/arena/card';
 import { GameService } from '@services/game-service';
 import { Component } from '@angular/core';
 import { CdkDropList, CdkDrag, CdkDropListGroup, CdkDragDrop, transferArrayItem, moveItemInArray } from '@angular/cdk/drag-drop'
@@ -16,7 +16,7 @@ export class Arena {
   deck:ICard[] = [];
   hand:ICard[] = [];
   playerBoard:ICard[] = [];
-  enemyBoard:IUnit[] = [];
+  enemyBoard:ICard[] = [];
 
   ngOnInit(){
     this.gameService.resetGame();

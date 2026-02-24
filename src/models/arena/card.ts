@@ -8,17 +8,11 @@ export interface ICard {
   type: string,
   cost: number,
   abilities: IAbility[] | undefined,
-  rarity: ERarities
-}
-
-export interface ISpell extends ICard {
-  element: EElements,
-}
-
-export interface IUnit extends ICard {
-  attack: number,
-  health: number,
-  keywords: EKeywords[]
+  rarity: ERarities,
+  element: EElements | undefined,
+  attack: number | undefined,
+  health: number | undefined,
+  keywords: EKeywords[] | undefined
 }
 
 export interface IAbility {

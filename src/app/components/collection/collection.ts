@@ -1,6 +1,6 @@
 import { GameService } from '@services/game-service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ICard, ISpell, IUnit } from '@models/arena/card';
+import { ICard } from '@models/arena/card';
 import { Card } from "../card/card";
 
 @Component({

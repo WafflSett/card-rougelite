@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { IAbility, ICard, ISpell, IUnit } from '@models/arena/card';
+import { IAbility, ICard } from '@models/arena/card';
 import { EEvents, EKeywords } from '@models/enums/cardEnums';
 import { StyledText } from "./styled-text/styled-text";
 
@@ -21,8 +21,8 @@ export class Card {
   ];
   @Input() card!: ICard;
   detailsMode: boolean = false;
-  spell: ISpell | undefined;
-  unit: IUnit | undefined;
+  spell: ICard | undefined;
+  unit: ICard | undefined;
   imageOnly: boolean = false;
   isTooltipEnabled: boolean = false;
 
@@ -34,9 +34,9 @@ export class Card {
     this.spell = undefined;
     this.unit = undefined;
     if (this.card.type == 'unit') {
-      this.unit = this.card as IUnit;
+      this.unit = this.card as ICard;
     } else if (this.card.type == 'spell') {
-      this.spell = this.card as ISpell;
+      this.spell = this.card as ICard;
     }
   }
 

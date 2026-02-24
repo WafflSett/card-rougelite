@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IUnit } from '@models/arena/card';
+import { ICard } from '@models/arena/card';
 import { Card } from "../../card/card";
 
 @Component({
@@ -9,5 +9,5 @@ import { Card } from "../../card/card";
   styleUrl: './unit.css',
 })
 export class Unit {
-  @Input() unit! : IUnit;
+  @Input() unit! : ICard;
 }

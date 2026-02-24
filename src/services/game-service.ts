@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICard, ISpell, IUnit } from '@models/arena/card';
+import { ICard } from '@models/arena/card';
 import { DataService } from './data-service';
 
 @Injectable({
@@ -7,11 +7,11 @@ import { DataService } from './data-service';
 })
 export class GameService {
   playerHand: ICard[] = [];
-  playerBoard: IUnit[] = [];
+  playerBoard: ICard[] = [];
   deck: ICard[] = [];
-  spells: ISpell[] = [];
-  units: IUnit[] = [];
-  allCards:ICard[] =[];
+  spells: ICard[] = [];
+  units: ICard[] = [];
+  allCards: ICard[] = [];
 
   constructor(private dataService: DataService) {
     this.loadCards();
@@ -36,15 +36,15 @@ export class GameService {
     });
   }
 
-  resetGame(){
+  resetGame() {
     this.playerBoard = [];
     this.deck = [...this.allCards];
-    this.deck.sort(()=> 0.5 - Math.random());
+    this.deck.sort(() => 0.5 - Math.random());
     this.playerHand = this.draw(6);
   }
 
-  draw(n:number):ICard[]{
-    let cards :ICard[] = [];
+  draw(n: number): ICard[] {
+    let cards: ICard[] = [];
     for (let i = 0; i < n; i++) {
       let nextCard = this.deck.pop();
       if (nextCard) {
