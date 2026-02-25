@@ -1,17 +1,7 @@
 # Card Rougelite
 This is a personal project made in Angular.  
-Singleplayer only for now, but 2-4 player co-op is the dream!  
-### My plans for the game:  
-+ Visual theme is 'celestial'
-+ Metaprogression
-+ Bunch of cards to collect
-+ Procedurely generated routes, combined with handcrafted map design
-+ Elements: 
-  + Solar
-  + Lunar
-  + Stardust
-  + Void
-+ Elemental reactions (Solar + Lunar = Eclipse)
+> [!NOTE]  
+> Check out my [wiki](https://github.com/WafflSett/card-rougelite/wiki) for more info!
 
 ## Run in development mode:
 1. `npm i`
