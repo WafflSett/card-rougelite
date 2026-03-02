@@ -1,3 +1,7 @@
-.playerhand .card:hover {
-  /* scale: 120%; */
+.cdk-drag-preview{
+  overflow: visible;
+}
+
+#playerBoard{
+  z-index: 0;
 }
