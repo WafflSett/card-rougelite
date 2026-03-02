@@ -1,38 +1,33 @@
 <div class="w-screen h-screen">
-  <div class="container mx-auto flex justify-center flex-nowrap space-y-5 w-full h-1/12 bg-gray-300"></div>
-  <div class="container mx-auto flex justify-center flex-nowrap space-y-5 w-full h-3/12 bg-gray-400" id="enemyBoard">
-    @for (card of enemyBoard; track $index) {
-      <app-unit [unit]="card"></app-unit>
-    }
-  </div>
-  <div cdkDropListGroup class="h-8/12">
-    <div
-      class="container mx-auto flex justify-center flex-nowrap space-y-5 w-full h-1/2 bg-gray-300"
-      id="playerBoard"
-      cdkDropList
-      [cdkDropListData]="playerBoard"
-      cdkDropListOrientation="horizontal"
-      (cdkDropListDropped)="drop($event)"
-      [cdkDropListEnterPredicate]="playUnitPredicate"
-    >
-      @for (card of playerBoard; track $index) {
-        <app-card [card]="card" cdkDrag [cdkDragData]="card"></app-card>
-      }
+  <div class="lg:hidden h-full">
+    <div class="container bg-gray-600 rounded-2xl mx-auto my-20">
+      <h1 class="text-4xl">Screen size too small, please get a bigger monitor</h1>
     </div>
-    <div
-      class="container mx-auto flex justify-center flex-nowrap space-y-5 w-full h-1/2 bg-gray-400"
-      id="playerHand"
-      cdkDropListSortingDisabled
-      cdkDropList
-      cdkDropListOrientation="horizontal"
-      [cdkDropListData]="hand"
-      (cdkDropListDropped)="drop($event)"
-      [cdkDropListEnterPredicate]="noReturnPredicate"
-    >
-      @for (card of hand; track $index) {
+  </div>
+  <div class="hidden lg:block h-full relative">
+    <div class="container mx-auto justify-center space-y-5 w-full h-xs bg-gray-300">
+      <div class="w-full bg-red-500 h-10 border border-gray-800">
+
+      </div>
+      <p class="text-center text-2xl">Enemy name</p>
+    </div>
+    <div cdkDropListGroup class="h-10/12 bottom-0 absolute w-full">
+      <div class="container mx-auto flex justify-center flex-nowrap space-y-5 w-full h-1/2 bg-gray-300" id="playerBoard"
+        cdkDropList [cdkDropListData]="playerBoard" cdkDropListOrientation="horizontal"
+        (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="playUnitPredicate">
+        @for (card of playerBoard; track $index) {
+        <app-card [card]="card" cdkDrag [cdkDragData]="card"></app-card>
+        }
+      </div>
+      <div class="container mx-auto flex justify-center flex-nowrap space-y-5 w-full h-1/2 bg-gray-400" id="playerHand"
+        cdkDropListSortingDisabled cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="hand"
+        (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate">
+        @for (card of hand; track $index) {
         <!-- <div cdkDrag [cdkDragData]="card" class="p-2 bg-blue-400 m-1 ">{{card.title}} - {{card.type}}</div> -->
         <app-card [card]="card" cdkDrag [cdkDragData]="card"></app-card>
-      }
+        }
+      </div>
     </div>
   </div>
+
 </div>
